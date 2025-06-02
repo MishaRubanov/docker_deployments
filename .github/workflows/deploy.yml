@@ -1,0 +1,51 @@
+name: Build and Deploy to Coolify
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/**/Dockerfile'
+      - 'apps/**/docker-compose.yml'
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Find changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v35
+        with:
+          files: |
+            apps/**/Dockerfile
+            apps/**/docker-compose.yml
+
+      - name: Set matrix
+        id: set-matrix
+        run: |
+          # Get the app names from changed files
+          APPS=$(echo "${{ steps.changed-files.outputs.all_changed_files }}" | grep -o 'apps/[^/]*' | sort -u)
+          # Create matrix JSON
+          echo "matrix={\"app\":$(echo "$APPS" | jq -R -s -c 'split("\n")[:-1]')}" >> $GITHUB_OUTPUT
+
+  build-and-deploy:
+    needs: detect-changes
+    runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.message, '[deploy]')
+    strategy:
+      matrix:
+        app: ${{ fromJson(needs.detect-changes.outputs.matrix).app }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Trigger Coolify deployment
+        run: |
+          curl --request GET "${{ secrets[format('COOLIFY_WEBHOOK_{0}', matrix.app)] }}" \
+            --header 'Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}' 
