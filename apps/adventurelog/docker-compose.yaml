@@ -40,10 +40,6 @@ services:
       - DJANGO_ADMIN_EMAIL=admin@example.com
       - PUBLIC_URL=https://adventurelogserver.misharubanov.com:8016 # Match the outward port, used for the creation of image urls
       - CSRF_TRUSTED_ORIGINS=
-          https://adventurelog.misharubanov.com:8015,
-          https://adventurelogserver.misharubanov.com:8015,
-          https://adventurelogserver.misharubanov.com:8016,
-          https://adventurelog.misharubanov.com:8016,
           http://localhost:8016,
           http://localhost:8015  # Comma separated list of trusted origins for CSRF
       - DEBUG=False
