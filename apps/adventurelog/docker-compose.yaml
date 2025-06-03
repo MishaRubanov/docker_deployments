@@ -41,7 +41,10 @@ services:
       - PUBLIC_URL=https://adventurelogserver.misharubanov.com:8018 # Match the outward port, used for the creation of image urls
       - CSRF_TRUSTED_ORIGINS=
           http://localhost:8018,
-          http://localhost:8017  # Comma separated list of trusted origins for CSRF
+          http://localhost:8017,
+          https://adventurelogserver.misharubanov.com:8018,
+          https://adventurelog.misharubanov.com:8017  # Comma separated list of trusted origins for CSRF
+      - ALLOWED_HOSTS=localhost,adventurelogserver.misharubanov.com,adventurelog.misharubanov.com
       - DEBUG=False
       - FRONTEND_URL=https://adventurelog.misharubanov.com:8017 # Used for email generation. This should be the url of the frontend
     ports:
