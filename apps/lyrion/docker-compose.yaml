@@ -8,6 +8,7 @@ services:
       - /mnt/storagebox/lyrion/playlist:/playlist:rw
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+    network_mode: host
     environment:
       - HTTP_PORT=9000
       - PUID=1000
