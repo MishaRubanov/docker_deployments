@@ -3,7 +3,7 @@ services:
     container_name: lms
     image: lmscommunity/lyrionmusicserver:stable
     volumes:
-      - /mnt/storagebox/lyrion/config:/config:rw
+      - /root/lyrion/config:/config:rw
       - /mnt/storagebox/lyrion/music:/music:ro
       - /mnt/storagebox/lyrion/playlist:/playlist:rw
       - /etc/localtime:/etc/localtime:ro
