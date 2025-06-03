@@ -8,10 +8,11 @@ services:
       - /mnt/storagebox/lyrion/playlist:/playlist:rw
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
+    network_mode: host
     environment:
       - HTTP_PORT=9000
       - PUID=1000
       - PGID=1000
     command: >
-      sh -c "chown -R 1000:1000 /config && chmod -R 755 /config && /lms/slimserver.pl"
+      sh -c "chown -R 1000:1000 /config && chmod -R 777 /config && /lms/slimserver.pl"  # slimserver.pl is the main LMS server process
     restart: unless-stopped
