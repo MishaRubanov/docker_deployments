@@ -40,10 +40,12 @@ services:
       - DJANGO_ADMIN_EMAIL=admin@example.com
       - PUBLIC_URL=https://adventurelogserver.misharubanov.com:8021 # Match the outward port, used for the creation of image urls
       - CSRF_TRUSTED_ORIGINS=
-          http://localhost:8021,
-          http://localhost:8020,
-          https://adventurelogserver.misharubanov.com:8021,
-          https://adventurelog.misharubanov.com:8020  # Comma separated list of trusted origins for CSRF
+          http://localhost,
+          https://localhost,
+          http://adventurelogserver.misharubanov.com,
+          https://adventurelogserver.misharubanov.com,
+          http://adventurelog.misharubanov.com,
+          https://adventurelog.misharubanov.com  # Comma separated list of trusted origins for CSRF
       - ALLOWED_HOSTS=localhost,adventurelogserver.misharubanov.com,adventurelog.misharubanov.com
       - DEBUG=False
       - FRONTEND_URL=https://adventurelog.misharubanov.com:8020 # Used for email generation. This should be the url of the frontend
