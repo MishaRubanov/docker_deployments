@@ -1,7 +1,7 @@
 services:
   lms:
     container_name: lms
-    image: lmscommunity/lyrionmusicserver:latest
+    image: lmscommunity/lyrionmusicserver:stable
     volumes:
       - /mnt/storagebox/lyrion/config:/config:rw
       - /mnt/storagebox/lyrion/music:/music:ro
