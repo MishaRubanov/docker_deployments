@@ -8,11 +8,8 @@ services:
       - /mnt/storagebox/lyrion/playlist:/playlist:rw
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-    ports:
-      - 9000:9000/tcp
-      - 9090:9090/tcp
-      - 3483:3483/tcp
-      - 3483:3483/udp
     environment:
       - HTTP_PORT=9000
+      - PUID=1000
+      - PGID=1000
     restart: unless-stopped
