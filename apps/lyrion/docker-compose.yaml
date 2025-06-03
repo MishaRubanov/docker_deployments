@@ -10,6 +10,6 @@ services:
       - /etc/timezone:/etc/timezone:ro
     environment:
       - HTTP_PORT=9000
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=0
     restart: unless-stopped
