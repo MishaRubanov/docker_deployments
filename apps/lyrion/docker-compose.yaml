@@ -11,6 +11,6 @@ services:
     network_mode: host
     environment:
       - HTTP_PORT=9000
-      - PUID=0
-      - PGID=0
+      - PUID=1000
+      - PGID=1000
     restart: unless-stopped
