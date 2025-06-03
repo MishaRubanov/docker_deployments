@@ -6,10 +6,10 @@ services:
     restart: unless-stopped
     environment:
       - PUBLIC_SERVER_URL=http://server:80 # Should be the service name of the backend with port 80, as that's what the backend container exposes
-      - ORIGIN=http://localhost:8017
+      - ORIGIN=http://localhost:8020
       - BODY_SIZE_LIMIT=Infinity
     ports:
-      - "8017:3000"
+      - "8020:3000"
     depends_on:
       - server
 
@@ -38,17 +38,17 @@ services:
       - DJANGO_ADMIN_USERNAME=admin
       - DJANGO_ADMIN_PASSWORD=admin
       - DJANGO_ADMIN_EMAIL=admin@example.com
-      - PUBLIC_URL=https://adventurelogserver.misharubanov.com:8018 # Match the outward port, used for the creation of image urls
+      - PUBLIC_URL=https://adventurelogserver.misharubanov.com:8021 # Match the outward port, used for the creation of image urls
       - CSRF_TRUSTED_ORIGINS=
-          http://localhost:8018,
-          http://localhost:8017,
-          https://adventurelogserver.misharubanov.com:8018,
-          https://adventurelog.misharubanov.com:8017  # Comma separated list of trusted origins for CSRF
+          http://localhost:8021,
+          http://localhost:8020,
+          https://adventurelogserver.misharubanov.com:8021,
+          https://adventurelog.misharubanov.com:8020  # Comma separated list of trusted origins for CSRF
       - ALLOWED_HOSTS=localhost,adventurelogserver.misharubanov.com,adventurelog.misharubanov.com
       - DEBUG=False
-      - FRONTEND_URL=https://adventurelog.misharubanov.com:8017 # Used for email generation. This should be the url of the frontend
+      - FRONTEND_URL=https://adventurelog.misharubanov.com:8020 # Used for email generation. This should be the url of the frontend
     ports:
-      - "8018:80"
+      - "8021:80"
     depends_on:
       - db
     volumes:
