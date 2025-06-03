@@ -11,8 +11,6 @@ services:
     network_mode: host
     environment:
       - HTTP_PORT=9000
-      - PUID=1000
-      - PGID=1000
-    command: >
-      sh -c "chown -R 1000:1000 /config && chmod -R 777 /config && /lms/slimserver.pl"  # slimserver.pl is the main LMS server process
+      - PUID=0
+      - PGID=0
     restart: unless-stopped
