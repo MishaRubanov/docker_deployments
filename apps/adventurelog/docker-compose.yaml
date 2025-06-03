@@ -5,7 +5,7 @@ services:
     container_name: adventurelog-frontend
     restart: unless-stopped
     environment:
-      - PUBLIC_SERVER_URL=http://adventurelog.misharubanov.com:8000 # Should be the service name of the backend with port 8000, even if you change the port in the backend service
+      - PUBLIC_SERVER_URL=http://adventurelogserver.misharubanov.com:8000 # Should be the service name of the backend with port 8000, even if you change the port in the backend service
       - ORIGIN=http://localhost:8015
       - BODY_SIZE_LIMIT=Infinity
     ports:
